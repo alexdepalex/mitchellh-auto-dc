@@ -38,3 +38,22 @@ Vagrant will now create a VM, based on the ubuntu/trusty64 box, give it 1GB of R
 
 ### Testing the application
 Did everything work? You can test by pointing your browser to http://10.9.8.10:12345/
+
+## Common issues
+### Vagrant: "A Vagrant environment or target machine is required..." 
+If your Vagrant output looks somewhat like the output below, make sure you are in the correct directory. If you cloned this repo to `/home/johndoe/git/meetup-automating-the-modern-datacenter` then try: 
+```
+$ cd /home/johndoe/git/meetup-automating-the-modern-datacenter
+$ vagrant up
+```
+
+### Vagrant: Rsync error
+During the `vagrant up` run, you might encounter rsync errors, telling you that there were 'too many authentication failures for vagrant'. If that happens, check if you have a running SSH Agent: 
+```
+$ ssh-add -l
+2048 xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx /home/johndoe/.ssh/id_rsa (RSA)
+```
+If you have quite a lot of keys in your SSH Agent, try unloading unsetting the `$SSH_AUTH_SOCK` environment variable, so Vagrant will not use the SSH Agent. 
+
+### Vagrant: failure during the creation of the Virtualbox VM
+If you have just installed or upgraded Virtualbox, make sure you have rebooted your machine. Not rebooting sometimes causes issues with Vagrant. 
