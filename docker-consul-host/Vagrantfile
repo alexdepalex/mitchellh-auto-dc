@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "cargonauts/boot2docker"
+  config.vm.box = "ubuntu/trusty64"
 
-  config.vm.network :private_network, type: 'dhcp'
+  config.vm.network :private_network, ip: "10.9.8.10"
 
   config.vm.provider "virtualbox" do |v|
     # On VirtualBox, we don't have guest additions or a functional vboxsf
@@ -19,20 +19,20 @@ Vagrant.configure("2") do |config|
   end
 
   # b2d doesn't support NFS
-  config.nfs.functional = false
+#   config.nfs.functional = false
 
   # b2d doesn't persist filesystem between reboots
-  if config.ssh.respond_to?(:insert_key)
-    config.ssh.insert_key = false
-  end
+  # if config.ssh.respond_to?(:insert_key)
+  #   config.ssh.insert_key = false
+  # end
 
   # configure DNS forwarding to Consul
-  $configDns = <<CONFIGDNS
-HOST_IP=$(ifconfig docker0 | grep 'inet addr:' | cut -d: -f2 | awk '{print $1}')
-echo "EXTRA_ARGS='--dns ${HOST_IP-172.17.42.1} --dns 8.8.4.4 --dns 8.8.8.8 --dns-search consul'" > /var/lib/boot2docker/profile
-echo "DOCKER_TLS='no'" >> /var/lib/boot2docker/profile
-sudo /etc/init.d/docker restart
-CONFIGDNS
+  # $configDns = <<CONFIGDNS
+# HOST_IP=$(ifconfig docker0 | grep 'inet addr:' | cut -d: -f2 | awk '{print $1}')
+# echo "EXTRA_ARGS='--dns ${HOST_IP-172.17.42.1} --dns 8.8.4.4 --dns 8.8.8.8 --dns-search consul'" > /var/lib/boot2docker/profile
+# echo "DOCKER_TLS='no'" >> /var/lib/boot2docker/profile
+# sudo /etc/init.d/docker restart
+# CONFIGDNS
 
-  config.vm.provision "shell", inline: $configDns
+   config.vm.provision "shell", path: "installdocker.sh"
 end
