@@ -1,5 +1,4 @@
 .vagrant
-*.swp
 
 ### osx ###
 .DS_Store
