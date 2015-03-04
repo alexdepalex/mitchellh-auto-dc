@@ -53,7 +53,7 @@ During the `vagrant up` run, you might encounter rsync errors, telling you that 
 $ ssh-add -l
 2048 xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx /home/johndoe/.ssh/id_rsa (RSA)
 ```
-If you have quite a lot of keys in your SSH Agent, try unloading unsetting the `$SSH_AUTH_SOCK` environment variable, so Vagrant will not use the SSH Agent. 
+If you have quite a lot of keys in your SSH Agent, try unloading or unsetting the `$SSH_AUTH_SOCK` environment variable, so Vagrant will not use the SSH Agent. 
 
 ### Vagrant: failure during the creation of the Virtualbox VM
 If you have just installed or upgraded Virtualbox, make sure you have rebooted your machine. Not rebooting sometimes causes issues with Vagrant. 
