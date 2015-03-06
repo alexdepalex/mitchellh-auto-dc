@@ -37,7 +37,7 @@ This usually takes somewhere between 1 and 15 minutes, depending on your connect
 Vagrant will now create a VM, based on the ubuntu/trusty64 box, give it 1GB of RAM, boot it, and install Docker on it. Then it will fire up a few containers. 
 
 ### Testing the application
-Did everything work? You can test by pointing your browser to http://10.9.8.10:12345/
+Did everything work? You can test by pointing your browser to http://10.9.8.10/
 
 ## Common issues
 ### Vagrant: "A Vagrant environment or target machine is required..." 
